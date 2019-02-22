@@ -5,14 +5,21 @@
     Test
 </h1>
 
-@foreach($projects as $project)
+@forelse($projects as $project)
 
 <ul>
     <li>
-        {{ $project->title }}
+        <a href="{{ $project->path() }}">{{ $project->title }}</a>
     </li>
 </ul>
-@endforeach
+
+@empty
+
+    <p>No projects yet</p>
+
+@endforelse
+
+
 
 </body>
 
