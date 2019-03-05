@@ -1,5 +1,6 @@
-<html>
-<body>
+@extends('layouts.app')
+
+@section('content')
 
 <h1>
     Create a project
@@ -27,10 +28,9 @@
 
     <div class="control">
         <button type="submit" class="button is-link">Save</button>
+        <a href="/projects">Cancel</a>
     </div>
 
 </form>
 
-</body>
-
-</html>
+@endsection

@@ -1,26 +1,24 @@
-<html>
-<body>
+@extends('layouts.app')
 
-<h1>
-    Test
-</h1>
+@section('content')
 
-@forelse($projects as $project)
-
-<ul>
-    <li>
-        <a href="{{ $project->path() }}">{{ $project->title }}</a>
-    </li>
-</ul>
-
-@empty
-
-    <p>No projects yet</p>
-
-@endforelse
+    <div class="flex items-center mb-3">
+        <a href="/projects/create">New Project</a>
+    </div>
 
 
+    <ul>
+        @forelse($projects as $project)
 
-</body>
+            <li>
+                <a href="{{ $project->path() }}">{{ $project->title }}</a>
+            </li>
 
-</html>
+        @empty
+
+            <p>No projects yet</p>
+
+        @endforelse
+    </ul>
+
+@endsection
