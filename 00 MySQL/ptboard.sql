@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2019 at 03:40 PM
+-- Generation Time: Mar 12, 2019 at 04:11 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -71,6 +71,15 @@ CREATE TABLE `projects` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `owner_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(16, 25, 'You can put anything', 'Lorem Ipsum', '2019-03-12 13:44:34', '2019-03-12 14:10:06'),
+(17, 25, 'Test od drugog', 'Nesto', '2019-03-12 14:09:23', '2019-03-12 14:10:25'),
+(18, 25, 'KUD Baščaršija', 'Opet', '2019-03-12 14:09:34', '2019-03-12 14:09:34');
+
 -- --------------------------------------------------------
 
 --
@@ -81,9 +90,19 @@ CREATE TABLE `tasks` (
   `id` int(10) UNSIGNED NOT NULL,
   `project_id` int(10) UNSIGNED NOT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `project_id`, `body`, `completed`, `created_at`, `updated_at`) VALUES
+(7, 16, 'Management task', 1, '2019-03-12 13:44:39', '2019-03-12 14:09:48'),
+(8, 16, 'Second one', 1, '2019-03-12 14:10:02', '2019-03-12 14:10:06'),
+(9, 17, 'Management task3', 0, '2019-03-12 14:10:25', '2019-03-12 14:10:25');
 
 -- --------------------------------------------------------
 
@@ -101,6 +120,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(25, 'Boris Pejcinovic - Zlovic', 'bpzweber@gmail.com', NULL, '$2y$10$C/LXvDHedH8rdgjppULEXOUJp0ZE3irppsFXcgzepJlY6FLznAIrm', 'R1wZ7tPKA4PNQYpGyfsfuILwY5K9bupC7iPcfgzdHRhSOokTVffsqng0E1Ew', '2019-03-12 13:44:03', '2019-03-12 13:44:03');
 
 --
 -- Indexes for dumped tables
@@ -152,19 +178,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
