@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Activity' => $baseDir . '/app/Activity.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -25,6 +26,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Policies\\ProjectPolicy' => $baseDir . '/app/Policies/ProjectPolicy.php',
     'App\\Project' => $baseDir . '/app/Project.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -3626,11 +3628,14 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
     'Symfony\\Polyfill\\Php72\\Php72' => $vendorDir . '/symfony/polyfill-php72/Php72.php',
     'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',
-    'Tests\\Feature\\ManageProjectsTest' => $baseDir . '/tests/Feature/ManageProjectsTest.php',
+    'Tests\\Feature\\ActivityFeedTest' => $baseDir . '/tests/Feature/ActivityFeedTest.php',
+    'Tests\\Feature\\ManageProjectsTest' => $baseDir . '/tests/Feature/ManageProjectsTest - Copy.php',
     'Tests\\Feature\\ProjectTasksTest' => $baseDir . '/tests/Feature/ProjectTasksTest.php',
+    'Tests\\Setup\\ProjectFactory' => $baseDir . '/tests/Setup/ProjectFactory.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',
     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',
     'Tests\\Unit\\ProjectTest' => $baseDir . '/tests/Unit/ProjectTest.php',
+    'Tests\\Unit\\TaskTest' => $baseDir . '/tests/Unit/TaskTest.php',
     'Tests\\Unit\\UserTest' => $baseDir . '/tests/Unit/UserTest.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',

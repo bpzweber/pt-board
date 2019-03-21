@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2019 at 04:11 PM
+-- Generation Time: Mar 21, 2019 at 03:52 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -25,6 +25,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `project_id` int(10) UNSIGNED NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `activities`
+--
+
+INSERT INTO `activities` (`id`, `project_id`, `description`, `created_at`, `updated_at`) VALUES
+(56, 30, 'created', '2019-03-21 11:20:34', '2019-03-21 11:20:34'),
+(57, 30, 'created_task', '2019-03-21 11:20:38', '2019-03-21 11:20:38'),
+(58, 30, 'created_task', '2019-03-21 11:20:40', '2019-03-21 11:20:40'),
+(59, 30, 'created_task', '2019-03-21 11:20:45', '2019-03-21 11:20:45'),
+(60, 30, 'completed_task', '2019-03-21 11:22:07', '2019-03-21 11:22:07'),
+(61, 30, 'completed_task', '2019-03-21 11:31:05', '2019-03-21 11:31:05'),
+(62, 30, 'incompleted_task', '2019-03-21 11:31:09', '2019-03-21 11:31:09'),
+(63, 30, 'completed_task', '2019-03-21 11:32:14', '2019-03-21 11:32:14'),
+(64, 30, 'incompleted_task', '2019-03-21 11:32:18', '2019-03-21 11:32:18'),
+(65, 30, 'created_task', '2019-03-21 12:24:15', '2019-03-21 12:24:15'),
+(66, 30, 'updated', '2019-03-21 13:30:18', '2019-03-21 13:30:18'),
+(67, 30, 'completed_task', '2019-03-21 13:34:07', '2019-03-21 13:34:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -42,7 +74,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_02_19_112732_create_projects_table', 1),
-(4, '2019_03_11_140322_create_tasks_table', 1);
+(4, '2019_03_11_140322_create_tasks_table', 1),
+(5, '2019_03_18_113420_create_activities_table', 1);
 
 -- --------------------------------------------------------
 
@@ -67,6 +100,7 @@ CREATE TABLE `projects` (
   `owner_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -75,10 +109,8 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `owner_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(16, 25, 'You can put anything', 'Lorem Ipsum', '2019-03-12 13:44:34', '2019-03-12 14:10:06'),
-(17, 25, 'Test od drugog', 'Nesto', '2019-03-12 14:09:23', '2019-03-12 14:10:25'),
-(18, 25, 'KUD Baščaršija', 'Opet', '2019-03-12 14:09:34', '2019-03-12 14:09:34');
+INSERT INTO `projects` (`id`, `owner_id`, `title`, `description`, `notes`, `created_at`, `updated_at`) VALUES
+(30, 39, 'KUD Baščaršija', 'Lorem Ipsum', 'asdfasdfas', '2019-03-21 11:20:34', '2019-03-21 13:34:07');
 
 -- --------------------------------------------------------
 
@@ -100,9 +132,10 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `project_id`, `body`, `completed`, `created_at`, `updated_at`) VALUES
-(7, 16, 'Management task', 1, '2019-03-12 13:44:39', '2019-03-12 14:09:48'),
-(8, 16, 'Second one', 1, '2019-03-12 14:10:02', '2019-03-12 14:10:06'),
-(9, 17, 'Management task3', 0, '2019-03-12 14:10:25', '2019-03-12 14:10:25');
+(15, 30, 'Management task', 1, '2019-03-21 11:20:38', '2019-03-21 11:22:07'),
+(16, 30, 'Second one', 0, '2019-03-21 11:20:40', '2019-03-21 11:31:09'),
+(17, 30, 'Management task 5', 1, '2019-03-21 11:20:45', '2019-03-21 13:34:07'),
+(18, 30, 'Management task 3', 0, '2019-03-21 12:24:15', '2019-03-21 12:24:15');
 
 -- --------------------------------------------------------
 
@@ -126,11 +159,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(25, 'Boris Pejcinovic - Zlovic', 'bpzweber@gmail.com', NULL, '$2y$10$C/LXvDHedH8rdgjppULEXOUJp0ZE3irppsFXcgzepJlY6FLznAIrm', 'R1wZ7tPKA4PNQYpGyfsfuILwY5K9bupC7iPcfgzdHRhSOokTVffsqng0E1Ew', '2019-03-12 13:44:03', '2019-03-12 13:44:03');
+(39, 'Boris Pejcinovic - Zlovic', 'bpzweber@gmail.com', NULL, '$2y$10$2qj3SI950L/MJwY/E1S1CeYY1kD7efexq1op.NOoXDfYKgogJcue2', NULL, '2019-03-21 11:20:22', '2019-03-21 11:20:22');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `activities`
+--
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `activities_project_id_foreign` (`project_id`);
 
 --
 -- Indexes for table `migrations`
@@ -169,32 +209,44 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `activities`
+--
+ALTER TABLE `activities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `activities`
+--
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `projects`
